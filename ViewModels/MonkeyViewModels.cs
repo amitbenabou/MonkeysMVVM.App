@@ -1,26 +1,23 @@
 ﻿using MonkeysMVVM.Models;
-using MonkeysMVVM.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MonkeysMVVM.ViewModels
 {
-    public class ShowMonkeyViewModel:ViewModelBase
+    internal class MonkeyViewModels : ViewModelBase
     {
-        
         private string name;
-        public string Name 
-        { 
-            get { return this.name; } 
+        public string Name
+        {
+            get { return this.name; }
             set
             {
                 this.name = value;
                 OnPropertyChanged();
-            } 
+            }
         }
         private string location;
         public string Location
@@ -45,22 +42,22 @@ namespace MonkeysMVVM.ViewModels
         }
 
         public Command GetMonkeyCommand { get; set; }
-
-        public ShowMonkeyViewModel()
+        private string locationEntry;
+        public string LocationEntry
         {
-            GetMonkeyCommand = new Command(GetMonkey);
-
-            GetMonkey();
+            get { return this.LocationEntry; }
         }
-
         private void GetMonkey()
         {
-            MonkeysService service = new MonkeysService();
-            Monkey m = service.GetRandomMonkey();
-            Name = m.Name;
-            Location = m.Location;
-            ImageUrl = m.ImageUrl;
+            List<Monkey> monkeys = new List<Monkey>();  
+
         }
-        
+
+        private int numbersOfMonkeysInLocation;
+        public int NumberOfMonkeysInLocation
+        {
+            get { return this.NumberOfMonkeysInLocation; }
+            set { this.numbersOfMonkeysInLocation = value; 
+                  OnPropertyChanged(); }
     }
 }
